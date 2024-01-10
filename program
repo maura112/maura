@@ -1,0 +1,82 @@
+import random
+
+class Ksiazka:
+    def __init__(self, tytul, autor, cena):
+        self.tytul = tytul
+        self.autor = autor
+        self.cena = cena
+
+    def wyswietl_informacje(self):
+        print("Tytuł: ", self.tytul)
+        print("Autor: ", self.autor)
+        print("Cena: ", self.cena)
+
+def dodaj_ksiazke():
+    tytul = input("Podaj tytuł książki: ")
+    autor = input("Podaj autora książki: ")
+    cena = float(input("Podaj cenę książki: "))
+    ksiazka = Ksiazka(tytul, autor, cena)
+    ksiazki.append(ksiazka)
+    print("Dodano książkę do bazy danych.")
+
+def wyswietl_ksiazki():
+    if len(ksiazki) == 0:
+        print("Brak książek w bazie danych.")
+    else:
+        for ksiazka in ksiazki:
+            ksiazka.wyswietl_informacje()
+            print()
+
+def szukaj_ksiazek():
+    autor = input("Podaj autora, którego książki chcesz znaleźć: ")
+    znalezione_ksiazki = []
+    for ksiazka in ksiazki:
+        if ksiazka.autor.lower() == autor.lower():
+            znalezione_ksiazki.append(ksiazka)
+    
+    if len(znalezione_ksiazki) == 0:
+        print("Nie znaleziono książek tego autora.")
+    else:
+        print("Znalezione książki:")
+        for ksiazka in znalezione_ksiazki:
+            ksiazka.wyswietl_informacje()
+            print()
+
+def generuj_dane_losowe():
+    tytuly = ["Pan Tadeusz", "W pustyni i w puszczy", "Lalka", "Ogniem i mieczem"]
+    autorzy = ["Adam Mickiewicz", "Henryk Sienkiewicz", "Bolesław Prus"]
+    ceny = [29.99, 39.99, 49.99]
+    for _ in range(5):
+        tytul = random.choice(tytuly)
+        autor = random.choice(autorzy)
+        cena = random.choice(ceny)
+        ksiazka = Ksiazka(tytul, autor, cena)
+        ksiazki.append(ksiazka)
+
+ksiazki = []
+
+while True:
+    print()
+    print("---- Witamy w księgarni ----")
+    print("1. Dodaj książkę")
+    print("2. Wyświetl książki")
+    print("3. Szukaj książek")
+    print("4. Generuj dane losowe")
+    print("5. Wyjście")
+    print("---------------------------")
+
+    wybor = input("Wybierz opcję: ")
+
+    if wybor == "1":
+        dodaj_ksiazke()
+    elif wybor == "2":
+        wyswietl_ksiazki()
+    elif wybor == "3":
+        szukaj_ksiazek()
+    elif wybor == "4":
+        generuj_dane_losowe()
+    elif wybor == "5":
+        print("Dziękujemy za skorzystanie z naszej księgarni. Do widzenia!")
+        break
+    else:
+        print("Nieprawidłowa opcja. Spróbuj ponownie.")
